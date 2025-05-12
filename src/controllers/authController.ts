@@ -1,13 +1,16 @@
 // authController.ts
-import { Request, Response, NextFunction  } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import prisma from '../prisma/client';
-import { sendVerification, checkVerification } from '../services/smsService'; // Importa las funciones
+import { ethers } from 'ethers';
 
+import { sendVerification, checkVerification } from '../services/smsService'; 
 
 export const register = async (req: Request, res: Response): Promise<any> => {
-  const { email, password, name, phone, dob } = req.body;
+  const { userData } = req.body;
+  const { email, password, name, phone, dob } = userData; 
+  console.log("USER",userData)
   try {
     const existingUser = await prisma.user.findUnique({ where: { email } });
 
@@ -15,31 +18,40 @@ export const register = async (req: Request, res: Response): Promise<any> => {
       return res.status(400).json({ message: 'Email already registered' });
     }
 
+    const wallet = ethers.Wallet.createRandom();
+    const walletAddress = wallet.address;
+    const privateKey = wallet.privateKey;
+
+    console.log("New Wallet Address:", walletAddress);
+    console.log("New Private Key (KEEP SECRET!):", privateKey);
+
     const hashedPassword = await bcrypt.hash(password, 10);
-    const wallet = "0x"+Date.now().toString(16).slice(0, 16); // Genera un wallet address ficticio
+    const hashedPrivateKey = await bcrypt.hash(privateKey, 10);
 
     const user = await prisma.user.create({
       data: {
-        email,
+        email: email, 
         password: hashedPassword,
-        name,
-        phone,
-        wallet,
-        dob,
-        token:'',
+        name: name,  
+        phone: phone, 
+        wallet: walletAddress,
+        dob: new Date(dob).toISOString(),
+        token: '',
+        privateKey: hashedPrivateKey,
+        validated: false,
       },
     });
 
     const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET!, { expiresIn: '1d' });
 
-    return res.status(201).json({ token, user: { id: user.id, email: user.email, name: user.name } });
+    return res.status(201).json({ token, user: { id: user.id, email: user.email, name: user.name, wallet: user.wallet } });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: 'Something went wrong' });
+    return res.status(500).json({ message: 'Something went wrong during registration' });
   }
 };
 
-export const login = async (req:Request, res:Response): Promise<any> => {
+export const login = async (req: Request, res: Response): Promise<any> => {
   const { email, password } = req.body;
   try {
     const user = await prisma.user.findUnique({ where: { email } });

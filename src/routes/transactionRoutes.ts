@@ -1,7 +1,7 @@
 // routes/auth.ts (O donde defines tus rutas)
 import { Router } from 'express';
 import { checkUser, validateUser } from '../controllers/validateControllers'; 
-import { getAllTickets, getTicketInfo } from '../controllers/ticketController';
+import { getBlock, getLatestBlock, getTicketInfo, mintTicket, getTicketOfWallet } from '../controllers/ticketController';
 
 const router = Router();
 
@@ -9,18 +9,13 @@ const router = Router();
     Rutas para validar que el usuario si posee el número de teléfono
 */
 
-//running
-router.post('/check', checkUser); 
-router.post('/validate', validateUser);
+router.get('/blocks/latest', getLatestBlock);
+router.get('/blocks/:blockNumber', getBlock);
+router.get('/tickets/:wallet', getTicketOfWallet);
+router.get('/ticket-info/:ticketId', getTicketInfo);
 
-//wip
 router.get('/tickets/:tokenId/event-info', getTicketInfo);
-router.get('/tickets/all', getAllTickets); 
+router.post('/tickets/mint', mintTicket );
 
-// disabled
-// router.post('/tickets/mint',);
-// router.post('/tickets/transfer',);
-// router.get('/tickets/:wallet',);
-// router.get('/tickets',);
 
 export default router;

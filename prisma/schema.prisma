@@ -31,6 +31,8 @@ model User {
   dob               DateTime
   token             String
   password          String
+  privateKey        String
+  validated         Boolean
   tickets           Ticket[] @relation("UserTickets")
 }
 

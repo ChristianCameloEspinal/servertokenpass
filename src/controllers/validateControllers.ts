@@ -39,7 +39,8 @@ export const validateUser = async (req: Request, res: Response): Promise<any> =>
 
         const isValidate = await checkVerification(phone, code);
 
-        if (isValidate) {
+        if (isValidate.valid) {
+            console.log(isValidate)
             return res.status(200).json({ message: 'User validated successfully' });
         }
         else {

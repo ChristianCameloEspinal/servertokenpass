@@ -137,7 +137,9 @@ exports.Prisma.UserScalarFieldEnum = {
   phone: 'phone',
   dob: 'dob',
   token: 'token',
-  password: 'password'
+  password: 'password',
+  privateKey: 'privateKey',
+  validated: 'validated'
 };
 
 exports.Prisma.TicketScalarFieldEnum = {

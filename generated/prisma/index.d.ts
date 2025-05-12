@@ -2295,6 +2295,8 @@ export namespace Prisma {
     dob: Date | null
     token: string | null
     password: string | null
+    privateKey: string | null
+    validated: boolean | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -2306,6 +2308,8 @@ export namespace Prisma {
     dob: Date | null
     token: string | null
     password: string | null
+    privateKey: string | null
+    validated: boolean | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -2317,6 +2321,8 @@ export namespace Prisma {
     dob: number
     token: number
     password: number
+    privateKey: number
+    validated: number
     _all: number
   }
 
@@ -2330,6 +2336,8 @@ export namespace Prisma {
     dob?: true
     token?: true
     password?: true
+    privateKey?: true
+    validated?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -2341,6 +2349,8 @@ export namespace Prisma {
     dob?: true
     token?: true
     password?: true
+    privateKey?: true
+    validated?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -2352,6 +2362,8 @@ export namespace Prisma {
     dob?: true
     token?: true
     password?: true
+    privateKey?: true
+    validated?: true
     _all?: true
   }
 
@@ -2436,6 +2448,8 @@ export namespace Prisma {
     dob: Date
     token: string
     password: string
+    privateKey: string
+    validated: boolean
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -2464,6 +2478,8 @@ export namespace Prisma {
     dob?: boolean
     token?: boolean
     password?: boolean
+    privateKey?: boolean
+    validated?: boolean
     tickets?: boolean | User$ticketsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
@@ -2477,6 +2493,8 @@ export namespace Prisma {
     dob?: boolean
     token?: boolean
     password?: boolean
+    privateKey?: boolean
+    validated?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2488,6 +2506,8 @@ export namespace Prisma {
     dob?: boolean
     token?: boolean
     password?: boolean
+    privateKey?: boolean
+    validated?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -2499,9 +2519,11 @@ export namespace Prisma {
     dob?: boolean
     token?: boolean
     password?: boolean
+    privateKey?: boolean
+    validated?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "wallet" | "name" | "email" | "phone" | "dob" | "token" | "password", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "wallet" | "name" | "email" | "phone" | "dob" | "token" | "password" | "privateKey" | "validated", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tickets?: boolean | User$ticketsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -2523,6 +2545,8 @@ export namespace Prisma {
       dob: Date
       token: string
       password: string
+      privateKey: string
+      validated: boolean
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -2955,6 +2979,8 @@ export namespace Prisma {
     readonly dob: FieldRef<"User", 'DateTime'>
     readonly token: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
+    readonly privateKey: FieldRef<"User", 'String'>
+    readonly validated: FieldRef<"User", 'Boolean'>
   }
     
 
@@ -4530,7 +4556,9 @@ export namespace Prisma {
     phone: 'phone',
     dob: 'dob',
     token: 'token',
-    password: 'password'
+    password: 'password',
+    privateKey: 'privateKey',
+    validated: 'validated'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -4621,6 +4649,13 @@ export namespace Prisma {
    * Reference to a field of type 'Float[]'
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
   /**
    * Deep Input Types
@@ -4716,6 +4751,8 @@ export namespace Prisma {
     dob?: DateTimeFilter<"User"> | Date | string
     token?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
+    privateKey?: StringFilter<"User"> | string
+    validated?: BoolFilter<"User"> | boolean
     tickets?: TicketListRelationFilter
   }
 
@@ -4728,6 +4765,8 @@ export namespace Prisma {
     dob?: SortOrder
     token?: SortOrder
     password?: SortOrder
+    privateKey?: SortOrder
+    validated?: SortOrder
     tickets?: TicketOrderByRelationAggregateInput
   }
 
@@ -4743,6 +4782,8 @@ export namespace Prisma {
     dob?: DateTimeFilter<"User"> | Date | string
     token?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
+    privateKey?: StringFilter<"User"> | string
+    validated?: BoolFilter<"User"> | boolean
     tickets?: TicketListRelationFilter
   }, "id" | "wallet" | "email">
 
@@ -4755,6 +4796,8 @@ export namespace Prisma {
     dob?: SortOrder
     token?: SortOrder
     password?: SortOrder
+    privateKey?: SortOrder
+    validated?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -4772,6 +4815,8 @@ export namespace Prisma {
     dob?: DateTimeWithAggregatesFilter<"User"> | Date | string
     token?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
+    privateKey?: StringWithAggregatesFilter<"User"> | string
+    validated?: BoolWithAggregatesFilter<"User"> | boolean
   }
 
   export type TicketWhereInput = {
@@ -4928,6 +4973,8 @@ export namespace Prisma {
     dob: Date | string
     token: string
     password: string
+    privateKey: string
+    validated: boolean
     tickets?: TicketCreateNestedManyWithoutOwnerInput
   }
 
@@ -4940,6 +4987,8 @@ export namespace Prisma {
     dob: Date | string
     token: string
     password: string
+    privateKey: string
+    validated: boolean
     tickets?: TicketUncheckedCreateNestedManyWithoutOwnerInput
   }
 
@@ -4952,6 +5001,8 @@ export namespace Prisma {
     dob?: DateTimeFieldUpdateOperationsInput | Date | string
     token?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    privateKey?: StringFieldUpdateOperationsInput | string
+    validated?: BoolFieldUpdateOperationsInput | boolean
     tickets?: TicketUpdateManyWithoutOwnerNestedInput
   }
 
@@ -4964,6 +5015,8 @@ export namespace Prisma {
     dob?: DateTimeFieldUpdateOperationsInput | Date | string
     token?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    privateKey?: StringFieldUpdateOperationsInput | string
+    validated?: BoolFieldUpdateOperationsInput | boolean
     tickets?: TicketUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
@@ -4976,6 +5029,8 @@ export namespace Prisma {
     dob: Date | string
     token: string
     password: string
+    privateKey: string
+    validated: boolean
   }
 
   export type UserUpdateManyMutationInput = {
@@ -4987,6 +5042,8 @@ export namespace Prisma {
     dob?: DateTimeFieldUpdateOperationsInput | Date | string
     token?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    privateKey?: StringFieldUpdateOperationsInput | string
+    validated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -4998,6 +5055,8 @@ export namespace Prisma {
     dob?: DateTimeFieldUpdateOperationsInput | Date | string
     token?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    privateKey?: StringFieldUpdateOperationsInput | string
+    validated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TicketCreateInput = {
@@ -5221,6 +5280,11 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     wallet?: SortOrder
@@ -5230,6 +5294,8 @@ export namespace Prisma {
     dob?: SortOrder
     token?: SortOrder
     password?: SortOrder
+    privateKey?: SortOrder
+    validated?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -5241,6 +5307,8 @@ export namespace Prisma {
     dob?: SortOrder
     token?: SortOrder
     password?: SortOrder
+    privateKey?: SortOrder
+    validated?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -5252,6 +5320,16 @@ export namespace Prisma {
     dob?: SortOrder
     token?: SortOrder
     password?: SortOrder
+    privateKey?: SortOrder
+    validated?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type EventScalarRelationFilter = {
@@ -5378,6 +5456,10 @@ export namespace Prisma {
     connectOrCreate?: TicketCreateOrConnectWithoutOwnerInput | TicketCreateOrConnectWithoutOwnerInput[]
     createMany?: TicketCreateManyOwnerInputEnvelope
     connect?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type TicketUpdateManyWithoutOwnerNestedInput = {
@@ -5546,6 +5628,19 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type TicketCreateWithoutEventInput = {
     price: number
     purchasedDate: Date | string
@@ -5672,6 +5767,8 @@ export namespace Prisma {
     dob: Date | string
     token: string
     password: string
+    privateKey: string
+    validated: boolean
   }
 
   export type UserUncheckedCreateWithoutTicketsInput = {
@@ -5683,6 +5780,8 @@ export namespace Prisma {
     dob: Date | string
     token: string
     password: string
+    privateKey: string
+    validated: boolean
   }
 
   export type UserCreateOrConnectWithoutTicketsInput = {
@@ -5744,6 +5843,8 @@ export namespace Prisma {
     dob?: DateTimeFieldUpdateOperationsInput | Date | string
     token?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    privateKey?: StringFieldUpdateOperationsInput | string
+    validated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type UserUncheckedUpdateWithoutTicketsInput = {
@@ -5755,6 +5856,8 @@ export namespace Prisma {
     dob?: DateTimeFieldUpdateOperationsInput | Date | string
     token?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    privateKey?: StringFieldUpdateOperationsInput | string
+    validated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TicketCreateManyEventInput = {

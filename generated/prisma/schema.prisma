@@ -22,15 +22,17 @@ model Event {
 }
 
 model User {
-  id       String   @id @default(cuid())
-  wallet   String   @unique
-  name     String
-  email    String   @unique
-  phone    String
-  dob      DateTime
-  token    String
-  password String
-  tickets  Ticket[] @relation("UserTickets")
+  id         String   @id @default(cuid())
+  wallet     String   @unique
+  name       String
+  email      String   @unique
+  phone      String
+  dob        DateTime
+  token      String
+  password   String
+  privateKey String
+  validated  Boolean
+  tickets    Ticket[] @relation("UserTickets")
 }
 
 model Ticket {
