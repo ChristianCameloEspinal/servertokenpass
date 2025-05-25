@@ -16,10 +16,9 @@ model Event {
   type              String
   location          String
   image             String
-  lastPrice         Float
-  currentPrice      Float
   eventDescription  String
-  tickets           Ticket[] @relation("EventTickets")
+  organizerId       String?
+  organizer         User?     @relation(fields: [organizerId], references: [id])
 }
 
 model User {
@@ -28,22 +27,15 @@ model User {
   name              String
   email             String   @unique
   phone             String
+  distributor       Boolean
   dob               DateTime
   token             String
   password          String
   privateKey        String
   validated         Boolean
-  tickets           Ticket[] @relation("UserTickets")
+  events            Event[]  
 }
 
-model Ticket {
-  id                Int      @id @default(autoincrement())
-  eventId           Int
-  price             Float
-  purchasedDate     DateTime
-  ownerId           String
-  event             Event    @relation("EventTickets", fields:[eventId], references:[id])
-  owner             User     @relation("UserTickets", fields:[ownerId], references:[id])
-}
+
 
 

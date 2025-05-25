@@ -14,12 +14,19 @@ const sendVerification = async (phone: string) => {
 };
 
 const checkVerification = async (phone: string, code: string) => {
-    return await client.verify.v2
-      .services(process.env.TWILIO_SERVICE_SID!)
-      .verificationChecks.create({
-        to: phone,
-        code,
-      });
-  };
-  
-export { sendVerification, checkVerification };
+  return await client.verify.v2
+    .services(process.env.TWILIO_SERVICE_SID!)
+    .verificationChecks.create({
+      to: phone,
+      code:code,
+    });
+};
+
+const createSafelist = async () => {
+  return await client.verify.v2.safelist.create({
+    phoneNumber: "+34653252684",
+  });
+
+}
+
+export { sendVerification, checkVerification, createSafelist };
